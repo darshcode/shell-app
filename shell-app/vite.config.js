@@ -8,13 +8,22 @@ export default defineConfig({
     federation({
       name: "shellApp",
       remotes: {
-        authApp: "http://localhost:3001/assets/remoteEntry.js",
-        nurseApp: "http://localhost:3002/assets/remoteEntry.js",
-        patientApp: "http://localhost:3003/assets/remoteEntry.js",
+        authApp: "https://auth-app.onrender.com/assets/remoteEntry.js",
+        nurseApp: "https://nurse-mfe.onrender.com/assets/remoteEntry.js",
+        patientApp: "https://patient-mfe.onrender.com/assets/remoteEntry.js",
       },
       shared: ["react", "react-dom", "@apollo/client"],
     }),
   ],
+  server: {
+    host: "0.0.0.0",
+    port: parseInt(process.env.PORT) || 3000,
+  },
+  preview: {
+    host: "0.0.0.0",
+    port: parseInt(process.env.PORT) || 3000,
+    allowedHosts: ["shell-app.onrender.com"], // replace with your actual domain
+  },
   build: {
     target: "esnext",
     outDir: "dist",
