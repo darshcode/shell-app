@@ -1,8 +1,7 @@
 import React, { lazy, Suspense } from "react";
-import "./App.css";
 
 const AuthComponent = lazy(() => import("authApp/AuthComponent"));
-const NurseApp = lazy(() => import("nurseApp/NurseAppComponent"));
+//const NurseApp = lazy(() => import("nurseApp/NurseAppComponent"));
 const PatientDashboard = lazy(() => import("patientApp/PatientDashboard"));
 
 function App() {
@@ -18,35 +17,19 @@ function App() {
           <AuthComponent onUserChange={setUser} />
         </Suspense>
 
+        {/*
         {user?.role === "nurse" && (
           <Suspense fallback={<div>Loading Nurse App...</div>}>
-            <div
-              style={{
-                minHeight: "100vh",
-                width: "100vw",
-                overflow: "hidden",
-                position: "absolute",
-                top: 50,
-                left: 0,
-              }}
-            >
+            <div>
               <NurseApp user={user} />
             </div>
           </Suspense>
         )}
+*/}
 
         {user?.role === "patient" && (
           <Suspense fallback={<div>Loading Patient Dashboard...</div>}>
-            <div
-              style={{
-                minHeight: "100vh",
-                width: "100vw",
-                overflow: "hidden",
-                position: "absolute",
-                top: 50,
-                left: 0,
-              }}
-            >
+            <div>
               <PatientDashboard user={user} />
             </div>
           </Suspense>
