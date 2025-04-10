@@ -9,10 +9,16 @@ export default defineConfig({
       name: "shellApp",
       remotes: {
         authApp: "https://auth-app.onrender.com/assets/remoteEntry.js",
-        nurseApp: "https://nurse-app.onrender.com/assets/remoteEntry.js",
-        patientApp: "https://patient-app.onrender.com/assets/remoteEntry.js",
+        //patientApp: "https://patient-app.onrender.com/assets/remoteEntry.js",
       },
-      shared: ["react", "react-dom", "@apollo/client"],
+      shared: [
+        "react",
+        "react-dom",
+        "@apollo/client",
+        "bootswatch",
+        "bootstrap",
+        "lucide-react",
+      ],
     }),
   ],
   server: {
@@ -22,7 +28,7 @@ export default defineConfig({
   preview: {
     host: "0.0.0.0",
     port: parseInt(process.env.PORT) || 3000,
-    allowedHosts: ["shell-app.onrender.com"], // replace with your actual domain
+    allowedHosts: ["shell-app.onrender.com"],
   },
   build: {
     target: "esnext",
