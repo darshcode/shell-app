@@ -9,7 +9,8 @@ export default defineConfig({
       name: "shellApp",
       remotes: {
         authApp: "https://auth-app.onrender.com/assets/remoteEntry.js",
-        //patientApp: "https://patient-app.onrender.com/assets/remoteEntry.js",
+        patientApp: "https://patient-app.onrender.com/assets/remoteEntry.js",
+        nurseApp: "https://nurse-app.onrender.com/assets/remoteEntry.js",
       },
       shared: [
         "react",

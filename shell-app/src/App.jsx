@@ -1,42 +1,36 @@
-import React, { lazy, Suspense } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 
-const AuthComponent = lazy(() => import("authApp/AuthComponent"));
-//const NurseApp = lazy(() => import("nurseApp/NurseAppComponent"));
-const PatientDashboard = lazy(() => import("patientApp/PatientDashboard"));
+// ✅ Correct remote imports
+const AuthApp = React.lazy(() => import("authApp/AuthAppComponent"));
+const NurseApp = React.lazy(() => import("nurseApp/NurseAppComponent"));
+const PatientDashboard = React.lazy(() =>
+  import("patientApp/PatientDashboard")
+);
 
-function App() {
-  const [user, setUser] = React.useState(null);
-  console.log("User in Shell App:", user);
+const ShellApp = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const userInStorage = localStorage.getItem("user");
+    if (userInStorage) {
+      setUser(JSON.parse(userInStorage));
+    }
+  }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Shell Application</h1>
-
-        <Suspense fallback={<div>Loading Auth...</div>}>
-          <AuthComponent onUserChange={setUser} />
-        </Suspense>
-
-        {/*
-        {user?.role === "nurse" && (
-          <Suspense fallback={<div>Loading Nurse App...</div>}>
-            <div>
-              <NurseApp user={user} />
-            </div>
-          </Suspense>
+    <div>
+      <h1>Shell App</h1>
+      <Suspense fallback={<div>Loading...</div>}>
+        {!user ? (
+          <AuthApp onUserChange={setUser} />
+        ) : user.role === "nurse" ? (
+          <NurseApp user={user} />
+        ) : (
+          <PatientDashboard user={user} />
         )}
-*/}
-
-        {user?.role === "patient" && (
-          <Suspense fallback={<div>Loading Patient Dashboard...</div>}>
-            <div>
-              <PatientDashboard user={user} />
-            </div>
-          </Suspense>
-        )}
-      </header>
+      </Suspense>
     </div>
   );
-}
+};
 
-export default App;
+export default ShellApp;
