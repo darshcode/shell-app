@@ -8,7 +8,8 @@ export default defineConfig({
     federation({
       name: "shellApp",
       remotes: {
-        authApp: "auth-app.onrender.com/assets/remoteEntry.js",
+        authApp:
+          "https://authenticationapp-mylj.onrender.com/assets/remoteEntry.js",
         patientApp: "https://patient-app.onrender.com/assets/remoteEntry.js",
         nurseApp: "https://nurse-app.onrender.com/assets/remoteEntry.js",
       },
