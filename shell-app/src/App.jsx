@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Suspense } from "react";
 
-// ✅ Correct remote imports
 const AuthApp = React.lazy(() => import("authApp/AuthAppComponent"));
 const NurseApp = React.lazy(() => import("nurseApp/NurseAppComponent"));
 const PatientDashboard = React.lazy(() =>
