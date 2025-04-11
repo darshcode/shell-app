@@ -10,7 +10,7 @@ export default defineConfig({
       remotes: {
         authApp:
           "https://authenticationapp-mylj.onrender.com/assets/remoteEntry.js",
-        patientApp: "https://patient-app.onrender.com/assets/remoteEntry.js",
+        patientApp: "https://patient-mfe.onrender.com/assets/remoteEntry.js",
         nurseApp: "https://nurse-app.onrender.com/assets/remoteEntry.js",
       },
       shared: [
